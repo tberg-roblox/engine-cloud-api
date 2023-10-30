@@ -7,7 +7,7 @@ Welcome to the Engine Cloud API Alpha! As seen in RDC this year, we are introduc
 
 ## Functionality
 
-This version of the product is asynchronous. What this means to you is that any request will take a minimum of two API calls. One for the operation request and one for the operation results. Also, please take note that this version is focused on the Source property of the Script, LocalScript, and ModuleScript instance types.
+This version of the product is asynchronous. What this means to you is that any request will take a minimum of two API calls. One for the operation request and one for the operation results. Also, please take note that this version is focused on the Source property of the Script, LocalScript, and ModuleScript instance types. No other properties will be editable. 
 
 Operation Request:
 
