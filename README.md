@@ -53,37 +53,36 @@ Another new concept you will need to familiarize yourself with is that of instan
 #### Examples
 
 ##### Curl
-
-<code>curl --include --location --request GET "https://apis.roblox.com/cloud/v2/universes/{universeId}/places/{placeId}/instances/{instanceId}" --header "x-api-key: {api-key}"
-</code>
-
+```
+curl --include --location --request GET "https://apis.roblox.com/cloud/v2/universes/<universeId>/places/<placeId>/instances/<instanceId>" --header "x-api-key: <api-key>"
+```
 ##### Python Example
+```
+import requests
 
-<code>import requests
-<br>
-\# fill out by developer
+# fill out by developer
 apiKey = ""
 universeId = ""
 placeId = ""
 instanceId = ""
-<br>
-\# immutable constants
+
+# immutable constants
 apiKeyHeaderKey = "x-api-key"
 getInstanceUrl = "https://apis.roblox.com/cloud/v2/universes/%s/places/%s/instances/%s"
-<br>
+
 def GetInstance():
 	url = getInstanceUrl % (universeId, placeId, instanceId)
 	headerData = {apiKeyHeaderKey: apiKey}
 	return requests.get(url, headers = headerData)
-<br>
+
 response = GetInstance()
 print("Response:", response.status_code, response.text)
-</code>
-<br>
+```
 
 ##### Response
-<code>{"path":"universes/\<universeId>/places/\<placeId>/instances/\<instanceId>/operations/\<operationId>","done":false}
-</code>
+```
+{"path":"universes/\<universeId>/places/\<placeId>/instances/\<instanceId>/operations/\<operationId>","done":false}
+```
 
 ### ListChildren
 
@@ -108,36 +107,38 @@ print("Response:", response.status_code, response.text)
 
 ##### Curl
 
-<code>curl --include --location --request GET "https://apis.roblox.com/cloud/v2/universes/{universeId}/places/{placeId}/instances/{instanceId}:listChildren" 
---header "x-api-key: {api-key}"</code>
+```
+curl --include --location --request GET "https://apis.roblox.com/cloud/v2/universes/<universeId>/places/<placeId>/instances/<instanceId>:listChildren" --header "x-api-key: <api-key>"
+```
 
 ##### Python
+```
+import requests
 
-<code>import requests
-<br>
-\# fill out by developer
+# fill out by developer
 apiKey = ""
 universeId = ""
 placeId = ""
 instanceId = ""
-<br>
-\# immutable constants
+
+# immutable constants
 apiKeyHeaderKey = "x-api-key"
 getInstanceUrl = "https://apis.roblox.com/cloud/v2/universes/%s/places/%s/instances/%s:listChildren"
-<br>
+
 def GetInstance():
 	url = getInstanceUrl % (universeId, placeId, instanceId)
 	headerData = {apiKeyHeaderKey: apiKey}
 	results = requests.get(url, headers = headerData)
 	return results
-<br>
+
 results = GetInstance()
 print("Operation Results:", results.status_code, results.text)
-</code>
+```
 
 ##### Response
-<code>{"path":"universes/\<universeId>/places/\<placeId>/instances/\<instanceId>/operations/\<operationId>","done":false}
-</code>
+```
+{"path":"universes/\<universeId>/places/\<placeId>/instances/\<instanceId>/operations/\<operationId>","done":false}
+```
 
 ### UpdateInstance
 
@@ -165,14 +166,16 @@ print("Operation Results:", results.status_code, results.text)
 #### Examples
 
 ##### Curl
-<code>curl --include --location --request PATCH "https://apis.roblox.com/cloud/v2/universes/{universeId}/places/{placeId}/instances/{instanceId}" --header "x-api-key: {api key}" --header "Content-Type: application/json" --data '{"engineInstance": {"details": {"\<instanceType>": {"\<propertyName>": "\<propertyValue>"}}}}'</code>
-
+```
+curl --include --location --request PATCH "https://apis.roblox.com/cloud/v2/universes/<universeId>/places/<placeId>/instances/<instanceId>" --header "x-api-key: <api key>" --header "Content-Type: application/json" --data '{"engineInstance": {"details": {"<instanceType>": {"<propertyName>": "<propertyValue>"}}}}'
+```
 
 ##### Python 
-<code>import json
+```
+import json
 import requests
-<br>
-\# fill out by developer
+
+# fill out by developer
 apiKey = ""
 universeId = ""
 placeId = ""
@@ -180,36 +183,36 @@ instanceId = ""
 instanceType = ""
 propertyName = ""
 propertyValue = ""
-<br>
-\# immutable constants
+
+# immutable constants
 apiKeyHeaderKey = "x-api-key"
 contentTypeHeaderKey = "Content-type"
 contentTypeHeaderValue = "application/json"
 updateInstanceUrl = "https://apis.roblox.com/cloud/v2/universes/%s/places/%s/instances/%s"
 detailsJSONKey = "details"
 engineInstanceJSONKey = "engine_instance"
-<br>
+
 def GeneratePostData():
 	propertiesDict = {propertyName: propertyValue}
 	detailsDict = {instanceType: propertiesDict}
 	instanceDict = {detailsJSONKey: detailsDict}
 	outerDict = {engineInstanceJSONKey: instanceDict}
 	return json.dumps(outerDict)
-<br>
+
 def UpdateInstance(postData):
     url = updateInstanceUrl % (universeId, placeId, instanceId)
     headerData = {apiKeyHeaderKey: apiKey,
     contentTypeHeaderKey: contentTypeHeaderValue}
     return requests.patch(url, headers = headerData, data = postData)
-<br>
+
 postData = GeneratePostData()
 response = UpdateInstance(postData)
 print("Response:", response.status_code, response.text)</code>
-
+```
 ##### Response
-<code>{"path":"universes/\<universeId>/places/\<placeId>/instances/\<instanceId>/operations/\<operationId>","done":false}
-</code>
-
+```
+{"path":"universes/\<universeId>/places/\<placeId>/instances/\<instanceId>/operations/\<operationId>","done":false}
+```
 ### GetOperation
 
 
@@ -222,53 +225,57 @@ print("Response:", response.status_code, response.text)</code>
 #### Examples
 
 ##### Curl
-<code>curl --include --location --request GET "https://apis.roblox.com/cloud/v2/universes/{universeId}/places/{placeId}/instances/{instanceId}/operations/{operationId}" --header "x-api-key:{api key}"</code>
-
+```
+curl --include --location --request GET "https://apis.roblox.com/cloud/v2/universes/<universeId>/places/<placeId>/instances/<instanceId>/operations/<operationId>" --header "x-api-key:<api key>"
+```
 ##### Python
-<code>import requests
+```
+import requests
 import time
-<br>
-\# fill out by developer
+
+# fill out by developer
 apiKey = ""
 operationPath = ""
-<br>
-\# mutable constants
+
+# mutable constants
 numberOfRetries = 10
 retryPollingCadence = 5
-<br>
-\# immutable constants
+
+# immutable constants
 apiKeyHeaderKey = "x-api-key"
 getOperationUrl = "https://apis.roblox.com/cloud/v2/%s"
 doneJSONKey = "done"
 engineInstanceJSONKey = "engine_instance"
-<br>
+
 def GetOperation(operationPath):
 	url = getOperationUrl % (operationPath)
 	headerData = {apiKeyHeaderKey: apiKey}
 	results = requests.get(url, headers = headerData)
 	return results
-<br>
+
 def PollForResults(operationPath):
 	currentRetries = 0
 	while (currentRetries < numberOfRetries):
 		time.sleep(retryPollingCadence)
 		results = GetOperation(operationPath)
 		currentRetries += 1
-	<br>	
+	
 		if (results.status_code != 200 or results.json()[doneJSONKey]):
 			return results
-<br>
+
 response = PollForResults(operationPath)
-print("Response:", response.status_code, response.text)</code>
+print("Response:", response.status_code, response.text)
+```
 
 ##### Response
-<code>{'@type': 'type.googleapis.com/roblox.open_cloud.cloud.v2.Instance', 'path': 'universes/{universeId}/places/{placeId}/instances/{instanceId}', 'hasChildren': False, 'engineInstance': {'id': '\<instanceId>', 'parent': '\<parentInstanceId>', 'name': '\<instanceName>', 'details': {'\<instanceType>': {'\<propertyType>': '\<propertyValue'}}}}</code>
-
+```
+{'@type': 'type.googleapis.com/roblox.open_cloud.cloud.v2.Instance', 'path': 'universes/<universeId>/places/<placeId>/instances/<instanceId>', 'hasChildren': False, 'engineInstance': {'id': '<instanceId>', 'parent': '<parentInstanceId>', 'name': '<instanceName>', 'details': {'<instanceType>': {'<propertyType>': '<propertyValue'}}}}
+```
 ## Instance Open Cloud Resource Format
 
 The following shows the format for an Open Cloud Instance Resource. This resource is used to communicate that state of instances in the datamodel, with additional metadata for ease of use.
-
-<code>{
+```
+{
     '@type': 'type.googleapis.com/roblox.open_cloud.cloud.v2.Instance',
     'path': 'universes/<universeId>/places/<placeId>/instances/<instanceId>',
     'hasChildren': False, 
@@ -283,4 +290,4 @@ The following shows the format for an Open Cloud Instance Resource. This resourc
         }
     }
 }
-</code>
+```
