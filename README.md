@@ -271,5 +271,23 @@ print("Response:", response.status_code, response.text)
 ```
 {'@type': 'type.googleapis.com/roblox.open_cloud.cloud.v2.Instance', 'path': 'universes/<universeId>/places/<placeId>/instances/<instanceId>', 'hasChildren': False, 'engineInstance': {'id': '<instanceId>', 'parent': '<parentInstanceId>', 'name': '<instanceName>', 'details': {'<instanceType>': {'<propertyType>': '<propertyValue'}}}}
 ```
-## Instance Open Cloud Resource Format
-Please see InstanceResourceSchema.md
+## Instance Open Cloud Resource JSON Format
+The following shows the format for an Open Cloud Instance Resource. This resource is used to communicate that state of instances in the datamodel, with additional metadata for ease of use. For more information, please see InstanceResourceSchema.md
+```
+{
+    '@type': 'type.googleapis.com/roblox.open_cloud.cloud.v2.Instance',
+    'path': 'universes/<universeId>/places/<placeId>/instances/<instanceId>',
+    'hasChildren': False, 
+    'engineInstance': {
+        'id': '<instanceId>',
+        'parent': '<parentInstanceId>',
+        'name': '<instanceName>',
+        'details': {
+            '<instanceType>': {
+                '<propertyType>': '<propertyValue>',
+                '<propertyType2>': '<propertyValue2>'
+            }
+        }
+    }
+}
+```
