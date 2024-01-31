@@ -56,13 +56,14 @@ def Request_GetOperation(operationId):
 def PollForOperationResults(operationId):
     currentNumberOfRetries = 0
     while (currentNumberOfRetries < maximumRetryAttempts):
-        time.sleep(retryPollingCadence)
-        currentNumberOfRetries += 1
-        print(".",  end="")
         results = Request_GetOperation(operationId)
         if (results.status_code != 200 or results.json()[kDoneKey]):
             print("\n")
             return results
+        time.sleep(retryPollingCadence)
+        currentNumberOfRetries += 1
+        print(".",  end="")
+        
         
     print("\nMaximum retries attempted")
 
