@@ -61,17 +61,17 @@ AVAILABLE COMMANDS:
 
 GET <instanceId>
    Gets information about the provided instance
-   <instanceId> : 128-bit condensed format 32 char hex id to identify the instance
+   <instanceId> : 128-bit condensed format 32 char hex Id to identify the instance
 
 LST <instanceId>
    Lists the children of an instance
-   <instanceId> : 128-bit condensed format 32 char hex id to identify the instance
+   <instanceId> : 128-bit condensed format 32 char hex Id to identify the instance
 
 UPD <instanceId> <instanceType> <propertyName> <propertyValue>
    Updates the properties of an instance and gets that instance data
-   <instanceId> : 128-bit condensed format 32 char hex id to identify the instance
-   <instanceType> : The camelCase name of the class you are attempting to edit
-   <propertyName> : The camelCase name of the property you are attempting to edit
+   <instanceId> : 128-bit condensed format 32 char hex Id to identify the instance
+   <instanceType> : The PascalCase Name of the class you are attempting to edit
+   <propertyName> : The PascalCase Name of the property you are attempting to edit
    <propertyValue> : The value of the property you are attempting to edit
 
 Note: For all commands, root is an alias of the DataModel and can be passed instead of instanceId
@@ -84,39 +84,39 @@ As you can see, we have three other commands at our disposal. Let’s try out th
 \>> get root
 
 ```
-{'@type': 'type.googleapis.com/roblox.open_cloud.cloud.v2.Instance', 'path': 'universes/5173123139/places/15022282565/instances/33bfdd7f-81e8-faa5-0551-8b8300000001', 'hasChildren': True, 'engineInstance': {'id': '33bfdd7f-81e8-faa5-0551-8b8300000001', 'parent': '', 'name': 'Game', 'details': {}}}
+{'@type': 'type.googleapis.com/roblox.open_cloud.cloud.v2.Instance', 'path': 'universes/5173123139/places/15022282565/instances/33bfdd7f-81e8-faa5-0551-8b8300000001', 'hasChildren': True, 'engineInstance': {'Id': '33bfdd7f-81e8-faa5-0551-8b8300000001', 'Parent': '', 'Name': 'Game', 'Details': {}}}
 ```
 
-It worked! If for some reason it didn’t, let us know in the channel. There are a few items of note here, so lets break it down. ‘`hasChildren' `lets us know if this instance has children in the datamodel. `'id'` provides a unique identifier for referring to a specific instance. root is the only current alias, and all other instances will need to be referred to by their id. Let’s use this now to get information about its children
+It worked! If for some reason it didn’t, let us know in the channel. There are a few items of note here, so lets break it down. ‘`hasChildren' `lets us know if this instance has children in the datamodel. `'Id'` provides a unique identifier for referring to a specific instance. root is the only current alias, and all other instances will need to be referred to by their Id. Let’s use this now to get information about its children
 
 \>> lst 33bfdd7f-81e8-faa5-0551-8b8300000001
 
 ```
-{'path': 'universes/5173123139/places/15022282565/instances/44b188da-ce63-2b47-02e9-c68d004815fc', 'hasChildren': True, 'engineInstance': {'id': '44b188da-ce63-2b47-02e9-c68d004815fc', 'parent': '33bfdd7f-81e8-faa5-0551-8b8300000001', 'name': 'Workspace', 'details': {}}}
-{'path': 'universes/5173123139/places/15022282565/instances/33bfdd7f-81e8-faa5-0551-8b8300000004', 'hasChildren': False, 'engineInstance': {'id': '33bfdd7f-81e8-faa5-0551-8b8300000004', 'parent': '33bfdd7f-81e8-faa5-0551-8b8300000001', 'name': 'Run Service', 'details': {}}}
-{'path': 'universes/5173123139/places/15022282565/instances/33bfdd7f-81e8-faa5-0551-8b8300000005', 'hasChildren': True, 'engineInstance': {'id': '33bfdd7f-81e8-faa5-0551-8b8300000005', 'parent': '33bfdd7f-81e8-faa5-0551-8b8300000001', 'name': 'GuiService', 'details': {}}}
+{'path': 'universes/5173123139/places/15022282565/instances/44b188da-ce63-2b47-02e9-c68d004815fc', 'hasChildren': True, 'engineInstance': {'Id': '44b188da-ce63-2b47-02e9-c68d004815fc', 'Parent': '33bfdd7f-81e8-faa5-0551-8b8300000001', 'Name': 'Workspace', 'Details': {}}}
+{'path': 'universes/5173123139/places/15022282565/instances/33bfdd7f-81e8-faa5-0551-8b8300000004', 'hasChildren': False, 'engineInstance': {'Id': '33bfdd7f-81e8-faa5-0551-8b8300000004', 'Parent': '33bfdd7f-81e8-faa5-0551-8b8300000001', 'Name': 'Run Service', 'Details': {}}}
+{'path': 'universes/5173123139/places/15022282565/instances/33bfdd7f-81e8-faa5-0551-8b8300000005', 'hasChildren': True, 'engineInstance': {'Id': '33bfdd7f-81e8-faa5-0551-8b8300000005', 'Parent': '33bfdd7f-81e8-faa5-0551-8b8300000001', 'Name': 'GuiService', 'Details': {}}}
 ...
 
 ```
 
-lst will return a list of children. As you can see, the first instance returned was Workspace and has the id `44b188da-ce63-2b47-02e9-c68d004815fc`. Let’s use this to dive deeper into the instance hierarchy.
+lst will return a list of children. As you can see, the first instance returned was Workspace and has the Id `44b188da-ce63-2b47-02e9-c68d004815fc`. Let’s use this to dive deeper into the instance hierarchy.
 
 \>> lst 44b188da-ce63-2b47-02e9-c68d004815fc
 
 ```
-{'path': 'universes/5173123139/places/15022282565/instances/44b188da-ce63-2b47-02e9-c68d004831f8', 'hasChildren': False, 'engineInstance': {'id': '44b188da-ce63-2b47-02e9-c68d004831f8', 'parent': '44b188da-ce63-2b47-02e9-c68d004815fc', 'name': 'Camera', 'details': {}}}
-{'path': 'universes/5173123139/places/15022282565/instances/44b188da-ce63-2b47-02e9-c68d00483205', 'hasChildren': False, 'engineInstance': {'id': '44b188da-ce63-2b47-02e9-c68d00483205', 'parent': '44b188da-ce63-2b47-02e9-c68d004815fc', 'name': 'Terrain', 'details': {}}}
-{'path': 'universes/5173123139/places/15022282565/instances/1ccbbed0-ea2a-a9b8-0539-e4a200003d79', 'hasChildren': False, 'engineInstance': {'id': '1ccbbed0-ea2a-a9b8-0539-e4a200003d79', 'parent': '44b188da-ce63-2b47-02e9-c68d004815fc', 'name': 'ModuleScript', 'details': {'moduleScript': {'source': 'asdfkjasl;fkjasdldk;f'}}}}
+{'path': 'universes/5173123139/places/15022282565/instances/44b188da-ce63-2b47-02e9-c68d004831f8', 'hasChildren': False, 'engineInstance': {'Id': '44b188da-ce63-2b47-02e9-c68d004831f8', 'Parent': '44b188da-ce63-2b47-02e9-c68d004815fc', 'Name': 'Camera', 'Details': {}}}
+{'path': 'universes/5173123139/places/15022282565/instances/44b188da-ce63-2b47-02e9-c68d00483205', 'hasChildren': False, 'engineInstance': {'Id': '44b188da-ce63-2b47-02e9-c68d00483205', 'Parent': '44b188da-ce63-2b47-02e9-c68d004815fc', 'Name': 'Terrain', 'Details': {}}}
+{'path': 'universes/5173123139/places/15022282565/instances/1ccbbed0-ea2a-a9b8-0539-e4a200003d79', 'hasChildren': False, 'engineInstance': {'Id': '1ccbbed0-ea2a-a9b8-0539-e4a200003d79', 'Parent': '44b188da-ce63-2b47-02e9-c68d004815fc', 'Name': 'ModuleScript', 'Details': {'ModuleScript': {'Source': 'asdfkjasl;fkjasdldk;f'}}}}
 ```
 
-Here we’ve listed the children of Workspace. There are three children, Camera, Terrain, and ModuleScript. We can see that ModuleScript  has more details than the other instances. That's because this alpha is focused on script-type instances (Script, LocalScript, ModuleScript) and their source property. Lets try editing the contents of ModuleScript. The id for ModuleScript is `1ccbbed0-ea2a-a9b8-0539-e4a200003d79`
+Here we’ve listed the children of Workspace. There are three children, Camera, Terrain, and ModuleScript. We can see that ModuleScript  has more details than the other instances. That's because this alpha is focused on script-type instances (Script, LocalScript, ModuleScript) and their Source property. Lets try editing the contents of ModuleScript. The Id for ModuleScript is `1ccbbed0-ea2a-a9b8-0539-e4a200003d79`
 
-\>> upd 1ccbbed0-ea2a-a9b8-0539-e4a200003d79 moduleScript source --newValue
+\>> upd 1ccbbed0-ea2a-a9b8-0539-e4a200003d79 ModuleScript Source --newValue
 
 ```
-{'@type': 'type.googleapis.com/roblox.open_cloud.cloud.v2.Instance', 'path': 'universes/5173123139/places/15022282565/instances/1ccbbed0-ea2a-a9b8-0539-e4a200003d79', 'hasChildren': False, 'engineInstance': {'id': '1ccbbed0-ea2a-a9b8-0539-e4a200003d79', 'parent': '44b188da-ce63-2b47-02e9-c68d004815fc', 'name': 'ModuleScript', 'details': {'moduleScript': {'source': '--newValue'}}}}
+{'@type': 'type.googleapis.com/roblox.open_cloud.cloud.v2.Instance', 'path': 'universes/5173123139/places/15022282565/instances/1ccbbed0-ea2a-a9b8-0539-e4a200003d79', 'hasChildren': False, 'engineInstance': {'Id': '1ccbbed0-ea2a-a9b8-0539-e4a200003d79', 'Parent': '44b188da-ce63-2b47-02e9-c68d004815fc', 'Name': 'ModuleScript', 'Details': {'ModuleScript': {'Source': '--newValue'}}}}
 ```
 
-The source value for ModuleScript has been changed to --newValue.
+The Source value for ModuleScript has been changed to --newValue.
 
 Congratulations! You know how to use all the commands in the quick start python script!

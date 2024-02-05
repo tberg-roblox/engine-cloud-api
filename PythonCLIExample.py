@@ -27,7 +27,7 @@ instanceResourceUrl = apiBaseURL + "universes/%s/places/%s/instances/%s"
 listChildrenUrlPostfix = ":listChildren"
 
 kEngineInstanceKey = "engineInstance"
-kDetailsKey = "details"
+kDetailsKey = "Details"
 kPathKey = "path"
 kDoneKey = "done"
 

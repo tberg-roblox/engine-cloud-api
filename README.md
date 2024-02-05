@@ -189,7 +189,7 @@ apiKeyHeaderKey = "x-api-key"
 contentTypeHeaderKey = "Content-type"
 contentTypeHeaderValue = "application/json"
 updateInstanceUrl = "https://apis.roblox.com/cloud/v2/universes/%s/places/%s/instances/%s"
-detailsJSONKey = "details"
+detailsJSONKey = "Details"
 engineInstanceJSONKey = "engine_instance"
 
 def GeneratePostData():
@@ -279,13 +279,13 @@ The following shows the format for an Open Cloud Instance Resource. This resourc
     'path': 'universes/<universeId>/places/<placeId>/instances/<instanceId>',
     'hasChildren': False, 
     'engineInstance': {
-        'id': '<instanceId>',
-        'parent': '<parentInstanceId>',
-        'name': '<instanceName>',
-        'details': {
-            '<instanceType>': {
-                '<propertyType>': '<propertyValue>',
-                '<propertyType2>': '<propertyValue2>'
+        'Id': '<instanceId>',
+        'Parent': '<parentInstanceId>',
+        'Name': '<instanceName>',
+        'Details': {
+            '<InstanceType>': {
+                '<PropertyName>': '<propertyValue>',
+                '<PropertyName2>': '<propertyValue2>'
             }
         }
     }
